@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 import debounce from 'lodash/debounce'
 
-import { getOSMData } from 'Services/datalayer'
+import { getOSMData } from '../services/datalayer'
 
 export default class Search extends Component {
   constructor() {
@@ -32,7 +32,7 @@ export default class Search extends Component {
         {state.autocompleteResults && state.autocompleteResults.length > 0 &&
           <ul>
             {state.autocompleteResults.map(result =>
-              <li>
+              <li onClick={() => this.props.onSetSearch(result)}>
                 <b>{result.properties.name}</b> {result.properties.street}, {result.properties.city}
               </li>
             )}

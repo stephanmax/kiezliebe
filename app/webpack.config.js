@@ -4,16 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Webpack = require('webpack')
 
 module.exports = {
-  entry: './app.js',
+  entry: './index.js',
   output: {
     path: Path.resolve(__dirname, './dist'),
     filename: 'bundle.js'
-  },
-  resolve: {
-    alias: {
-      Components: Path.resolve(__dirname, 'components'),
-      Services: Path.resolve(__dirname, 'services')
-    }
   },
   module: {
     rules: [{
