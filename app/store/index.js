@@ -11,7 +11,7 @@ const storeFactory = (initialState = {}) => {
   )
   
   store.subscribe(() => {
-    console.log(JSON.stringify(store.getState()))
+    
   })
 
   return store

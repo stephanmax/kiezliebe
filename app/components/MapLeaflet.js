@@ -40,7 +40,6 @@ export default class MapLeaflet extends Component {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.search.geometry || prevProps.search.geometry.coordinates[0] != this.props.search.geometry.coordinates[0] || prevProps.search.geometry.coordinates[1] != this.props.search.geometry.coordinates[1]) {
-      console.log('HELLO')
       this.map.flyTo(this.props.search.geometry.coordinates.reverse())
     }
   }
