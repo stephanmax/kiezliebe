@@ -1,1 +1,1 @@
-export const getOSMData = query => fetch(`/search?q=${query}`).then(res => res.json())
+export const getOSMData = query => fetch(`/search?q=${encodeURIComponent(query)}`).then(res => res.json())
