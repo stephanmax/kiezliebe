@@ -1,3 +1,4 @@
+const Boom = require('boom')
 const Hapi = require('hapi')
 const Joi = require('joi')
 
@@ -19,17 +20,14 @@ server.route({
       }
     }
   },
-  handler: (req) => OSM(req.query).then(res => res.features)
+  handler: (req) => OSM(req.query)
+    .then(res => res.features)
+    .catch(err => Boom.badRequest(err))
 })
 
 const init = async () => {
   await server.start()
   console.log(`Server running at ${server.info.uri}...`)
 }
-
-process.on('unhandledRejection', err => {
-  console.log(err)
-  process.exit(1)
-})
 
 init()
