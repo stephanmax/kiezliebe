@@ -4,14 +4,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Webpack = require('webpack')
 
 module.exports = {
-  entry: './map.js',
+  entry: './app.js',
   output: {
     path: Path.resolve(__dirname, './dist'),
     filename: 'bundle.js'
   },
+  resolve: {
+    alias: {
+      Components: Path.resolve(__dirname, 'components'),
+      Services: Path.resolve(__dirname, 'services')
+    }
+  },
   module: {
     rules: [{
-      test: /\.js$/,
+      test: /\.(js|jsx)$/,
       exclude: /node_modules/,
       use: [
         'babel-loader'
@@ -28,6 +34,11 @@ module.exports = {
         'file-loader'
       ]
     }]
+  },
+  devServer: {
+    proxy: {
+      '/search': 'http://localhost:3001'
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({

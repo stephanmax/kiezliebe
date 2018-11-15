@@ -14,7 +14,7 @@ L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}
 
 map.locate({
   setView: true,
-  maxZoom: 16
+  maxZoom: 14
 })
 
 map.on('locationfound', (e) => {

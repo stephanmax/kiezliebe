@@ -19,7 +19,7 @@ server.route({
       }
     }
   },
-  handler: (req) => OSM(req.query)
+  handler: (req) => OSM(req.query).then(res => res.features)
 })
 
 const init = async () => {
