@@ -33,7 +33,7 @@ export default class Search extends Component {
           <ul>
             {state.autocompleteResults.map(result =>
               <li onClick={() => this.props.onSetSearch(result)}>
-                <b>{result.properties.name}</b> {result.properties.street}, {result.properties.city}
+                <b>{result.name}</b> {result.street}, {result.city}
               </li>
             )}
           </ul>

@@ -16,6 +16,6 @@ export const Search = connect(
 
 export const Map = connect(
   state => ({
-    search: state.search
+    coordinates: state.search.latlng
   })
 )(MapLeaflet)

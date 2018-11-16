@@ -1,8 +1,10 @@
 const Boom = require('boom')
+const DataTransform = require('node-json-transform').DataTransform
 const Hapi = require('hapi')
 const Joi = require('joi')
 
-const OSM = require('./osm.js')
+const map = require('./transform-map.js')
+const osm = require('./osm.js')
 
 const server = Hapi.server({
   port: 3001,
@@ -20,8 +22,8 @@ server.route({
       }
     }
   },
-  handler: (req) => OSM(req.query)
-    .then(res => res.features)
+  handler: (req) => osm(req.query)
+    .then(res => DataTransform(res, map).transform())
     .catch(err => Boom.badRequest(err))
 })
 
