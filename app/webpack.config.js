@@ -9,6 +9,11 @@ module.exports = {
     path: Path.resolve(__dirname, './dist'),
     filename: 'bundle.js'
   },
+  resolve: {
+    alias: {
+      assets: Path.resolve(__dirname, 'assets/')
+    }
+  },
   module: {
     rules: [{
       test: /\.(js|jsx)$/,
@@ -23,7 +28,7 @@ module.exports = {
         'css-loader'
       ]
     }, {
-      test: /\.png$/,
+      test: /\.(png|svg)$/,
       use: [
         'file-loader'
       ]

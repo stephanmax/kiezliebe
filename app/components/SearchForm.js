@@ -7,6 +7,7 @@ export default class Search extends Component {
   constructor() {
     super()
     this.state = {
+      active: false,
       query: '',
       autocompleteResults: undefined
     }
@@ -25,20 +26,36 @@ export default class Search extends Component {
     }
   }
 
-  render({}, state) {
+  onFocus = (e) => {
+    this.setState({ active: true })
+  }
+
+  onBlur = (e) => {
+    this.setState({ active: false })
+  }
+
+  render({onSetSearch}, {active, query, autocompleteResults}) {
     return (
-      <div>
-        <input type="search" name="query" autocomplete="off" value={state.query} onInput={this.onInput} />
-        {state.autocompleteResults && state.autocompleteResults.length > 0 &&
+      <form>
+        <input
+          type="search"
+          name="query"
+          autocomplete="off"
+          value={query}
+          onInput={this.onInput}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
+        />
+        {active && query.length > 0 && autocompleteResults && autocompleteResults.length > 0 &&
           <ul>
-            {state.autocompleteResults.map(result =>
-              <li onClick={() => this.props.onSetSearch(result)}>
+            {autocompleteResults.map(result =>
+              <li onMouseDown={() => onSetSearch(result)}>
                 <b>{result.name}</b> {result.street}, {result.city}
               </li>
             )}
           </ul>
         }
-      </div>
+      </form>
     )
   }
 }

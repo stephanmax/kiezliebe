@@ -11,7 +11,7 @@ const storeFactory = (initialState = {}) => {
   )
   
   store.subscribe(() => {
-    
+    console.log(store)
   })
 
   return store
