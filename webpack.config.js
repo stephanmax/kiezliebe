@@ -36,7 +36,7 @@ module.exports = {
   },
   devServer: {
     proxy: {
-      '/search': 'http://localhost:3001'
+      '/.netlify/functions/search': 'http://localhost:9000/.netlify/functions/search'
     }
   },
   plugins: [
