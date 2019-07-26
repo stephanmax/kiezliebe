@@ -24,8 +24,16 @@ module.exports = {
     }, {
       test: /\.css$/,
       use: [
-        'style-loader',
-        'css-loader'
+        {
+          loader: 'style-loader'
+        },
+        {
+          loader: 'css-loader',
+          // TODO: Using this to ignore png files referenced by Leaflet CSS
+          options: {
+            url: false
+          }
+        }
       ]
     }, {
       test: /\.(png|svg)$/,
